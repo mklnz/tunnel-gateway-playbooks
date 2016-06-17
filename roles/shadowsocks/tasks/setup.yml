@@ -1,0 +1,23 @@
+- name: Upload config
+  template:
+    src: config.json.j2
+    dest: /etc/shadowsocks-libev/config.json
+  notify: restart shadowsocks
+
+- name: Upload init script
+  copy:
+    src: shadowsocks-libev-init
+    dest: /etc/init.d/shadowsocks-libev
+    mode: 0755
+    owner: root
+    group: root
+  notify: restart shadowsocks
+
+- name: Enable service
+  service: name=shadowsocks-libev enabled=yes
+
+- name: Upload monit config file
+  template:
+    src: monit-shadowsocks.j2
+    dest: /etc/monit/conf.d/shadowsocks
+  notify: restart monit

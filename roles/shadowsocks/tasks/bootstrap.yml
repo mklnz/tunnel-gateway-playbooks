@@ -1,0 +1,15 @@
+- name: Install prerequisites
+  apt:
+    name: "{{item}}"
+    cache_valid_time: 3600
+    update_cache: yes
+  with_items:
+    - build-essential
+    - autoconf
+    - libtool
+    - libssl-dev
+    - gawk
+    - debhelper
+    - dh-systemd
+    - init-system-helpers
+    - pkg-config

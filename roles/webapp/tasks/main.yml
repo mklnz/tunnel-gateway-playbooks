@@ -1,0 +1,5 @@
+- include: install.yml
+  tags: [webapp, webapp-install]
+
+- include: setup.yml
+  tags: [webapp, webapp-setup]

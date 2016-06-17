@@ -1,0 +1,3 @@
+- name: restart obfsproxy
+  service: name=obfsproxy state=restarted
+  become: yes

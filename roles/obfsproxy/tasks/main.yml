@@ -1,0 +1,7 @@
+- include: install.yml
+  become: yes
+  tags: [obfsproxy, obfsproxy-install]
+
+- include: setup.yml
+  become: yes
+  tags: [obfsproxy, obfsproxy-setup]

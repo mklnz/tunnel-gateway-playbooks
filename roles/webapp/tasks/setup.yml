@@ -1,0 +1,6 @@
+- name: Upload dnsmasq config
+  template:
+    src: gfwlist.conf.j2
+    dest: /etc/dnsmasq.d/gfwlist.conf
+  become: yes
+  notify: restart dnsmasq

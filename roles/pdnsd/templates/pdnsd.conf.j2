@@ -1,0 +1,23 @@
+global {
+  perm_cache=2048;
+  cache_dir="/var/cache/pdnsd";
+  run_as="pdnsd";
+  server_ip = {{pdnsd.server_ip}};
+  server_port = {{pdnsd.server_port}};
+  status_ctl = on;
+  paranoid=on;
+  query_method=tcp_only;
+  min_ttl=30m;       // Retain cached entries at least 15 minutes.
+  max_ttl=1w;        // One week.
+  timeout=10;        // Global timeout option (10 seconds).
+}
+
+server {
+  label = "google";
+  ip = {{pdnsd.upstream_servers}};
+  timeout = 5;
+  uptest = none;
+  purge_cache = off;
+  proxy_only = on;
+  lean_query = on;
+}

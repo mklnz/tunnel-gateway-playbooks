@@ -1,0 +1,11 @@
+- name: Upload pdns config
+  template:
+    src: pdnsd.conf.j2
+    dest: /etc/pdnsd.conf
+  notify: restart pdnsd
+
+- name: Upload default_pdns config
+  template:
+    src: default_pdnsd.j2
+    dest: /etc/default/pdnsd
+  notify: restart pdnsd

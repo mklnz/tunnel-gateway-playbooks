@@ -1,0 +1,7 @@
+- include: install.yml
+  become: yes
+  tags: [pdnsd, pdnsd-install]
+
+- include: setup.yml
+  become: yes
+  tags: [pdnsd, pdnsd-install]

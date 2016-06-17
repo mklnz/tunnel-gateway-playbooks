@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: pdnsd
+  - role: dnsmasq

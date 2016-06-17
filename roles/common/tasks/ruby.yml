@@ -1,0 +1,20 @@
+- name: Add PPA repositories
+  apt_repository: repo="{{item}}"
+  with_items:
+    - ppa:brightbox/ruby-ng
+
+- name: Install ruby
+  apt: name={{item}} cache_valid_time=3600 update_cache=yes
+  with_items:
+    - ruby2.3
+    - ruby2.3-dev
+
+- name: Upload .gemrc for China source
+  copy:
+    src: gemrc
+    dest: ~/.gemrc
+
+- name: Install system-wide gems
+  gem: name={{item}} user_install=no state=present
+  with_items:
+    - bundler

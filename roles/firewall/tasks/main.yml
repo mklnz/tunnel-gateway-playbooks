@@ -1,0 +1,7 @@
+- include: install.yml
+  become: yes
+  tags: [firewall, firewall-install]
+
+- include: setup.yml
+  become: yes
+  tags: [firewall, firewall-setup]

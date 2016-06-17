@@ -1,0 +1,7 @@
+- include: install.yml
+  become: yes
+  tags: [common, common-install]
+
+- include: ruby.yml
+  become: yes
+  tags: [common, common-ruby]

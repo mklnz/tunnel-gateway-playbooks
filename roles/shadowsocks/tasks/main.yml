@@ -1,0 +1,10 @@
+- include: bootstrap.yml
+  become: yes
+  tags: [shadowsocks, shadowsocks-bootstrap]
+
+- include: install.yml
+  tags: [shadowsocks, shadowsocks-install]
+
+- include: setup.yml
+  become: yes
+  tags: [shadowsocks, shadowsocks-setup]

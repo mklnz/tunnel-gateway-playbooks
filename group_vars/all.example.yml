@@ -1,0 +1,18 @@
+shadowsocks:
+  server:
+  server_port:
+  local_address: 0.0.0.0
+  local_port: 1080
+  password:
+  timeout: 60
+  method: rc4-md5
+
+dynamic_rules:
+  dns_server: 127.0.0.1
+  dns_port: 1053
+  ipset: gfwlist
+
+pdnsd:
+  server_ip: 127.0.0.1
+  server_port: 1053
+  upstream_servers: 8.8.4.4, 8.8.8.8
