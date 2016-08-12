@@ -13,3 +13,5 @@
     - dh-systemd
     - init-system-helpers
     - pkg-config
+    - asciidoc
+    - xmlto
