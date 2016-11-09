@@ -16,3 +16,4 @@
     - asciidoc
     - xmlto
     - apg
+    - libpcre3-dev

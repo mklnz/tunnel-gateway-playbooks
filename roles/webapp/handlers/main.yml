@@ -1,3 +1,7 @@
 - name: restart dnsmasq
   service: name=dnsmasq state=restarted
   become: yes
+
+- name: restart webapp
+  systemd: name=gateway-web state=restarted daemon_reload=yes
+  become: yes

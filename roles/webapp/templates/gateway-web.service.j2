@@ -1,0 +1,15 @@
+[Unit]
+Description=Gateway web interface
+
+[Service]
+Type=forking
+WorkingDirectory=/home/{{ansible_user}}/tunnel-gateway-web/
+ExecStart=/usr/local/bin/puma --pidfile app.pid -p 4567 -d
+User={{ansible_user}}
+Group={{ansible_user}}
+PIDFile=/home/{{ansible_user}}/tunnel-gateway-web/app.pid
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
