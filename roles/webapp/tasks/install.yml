@@ -1,4 +1,15 @@
+- name: Install prerequisites
+  apt:
+    name: "{{item}}"
+    cache_valid_time: 3600
+    update_cache: yes
+  with_items:
+    - mongodb-server
+    - nodejs
+
 - name: Git checkout gateway-web
   git:
-    repo: https://github.com/mklnz/tunnel-gateway-web.git
-    dest: ~/tunnel-gateway-web
+    repo: https://github.com/mklnz/gateway-web.git
+    dest: "~/gateway-web"
+  become_user: "{{common.deploy_user}}"
+  notify: precompile assets

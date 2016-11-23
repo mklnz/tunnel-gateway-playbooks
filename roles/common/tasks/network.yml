@@ -1,0 +1,9 @@
+- name: Remove cloud interface file
+  file:
+    path: /etc/network/interfaces.d/50-cloud-init.cfg
+    state: absent
+
+- name: Upload interface file
+  template:
+    src: network_gateway.j2
+    dest: /etc/network/interfaces.d/gateway.cfg

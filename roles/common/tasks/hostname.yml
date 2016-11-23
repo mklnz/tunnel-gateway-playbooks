@@ -1,0 +1,20 @@
+- name: Set hostname
+  hostname: name="{{common.hostname}}"
+
+- name: Check hosts file
+  shell: awk /^127.0.1.1/ /etc/hosts
+  register: hosts_awk
+  changed_when: no
+
+- name: Ensure hosts entry
+  lineinfile:
+    dest: /etc/hosts
+    line: "127.0.1.1 {{common.hostname}}.{{common.domain_suffix}} {{common.hostname}}"
+  when: hosts_awk.stdout == ""
+
+- name: Update hosts file
+  lineinfile:
+    dest: /etc/hosts
+    regexp: "^127.0.1.1"
+    line: "127.0.1.1 {{common.hostname}}.{{common.domain_suffix}} {{common.hostname}}"
+  when: hosts_awk.stdout != ""

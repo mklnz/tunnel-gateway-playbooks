@@ -1,0 +1,28 @@
+- name: Authorised key for root
+  authorized_key:
+    user: root
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Root password
+  user:
+    name: root
+    password: "{{common.admin_password}}"
+    update_password: always
+
+- name: Add deploy group
+  group:
+    name: "{{common.deploy_user}}"
+
+- name: Add deploy user
+  user:
+    name: "{{common.deploy_user}}"
+    shell: /bin/bash
+    group: "{{common.deploy_user}}"
+    groups: sudo
+    append: yes
+    password: "{{common.admin_password}}"
+
+- name: Authorised key for deploy user
+  authorized_key:
+    user: "{{common.deploy_user}}"
+    key: "{{lookup('file', '~/.ssh/id_rsa.pub')}}"

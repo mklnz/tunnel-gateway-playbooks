@@ -1,6 +1,8 @@
 - hosts: routers
   roles:
     - common
+    - dnsmasq
+    - pdnsd
     - shadowsocks
     - firewall
     - webapp

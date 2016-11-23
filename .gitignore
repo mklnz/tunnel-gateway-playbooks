@@ -2,5 +2,6 @@
 *.retry
 
 group_vars/*
-!group_vars/*example*
-hosts
+!group_vars/*example
+group_vars/seeds/*
+!group_vars/seeds/.keep

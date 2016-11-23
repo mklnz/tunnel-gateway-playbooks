@@ -3,6 +3,7 @@
   tags: [shadowsocks, shadowsocks-bootstrap]
 
 - include: install.yml
+  become: yes
   tags: [shadowsocks, shadowsocks-install]
 
 - include: setup.yml

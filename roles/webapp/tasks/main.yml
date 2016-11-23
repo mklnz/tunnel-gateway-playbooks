@@ -1,5 +1,12 @@
 - include: install.yml
+  become: yes
   tags: [webapp, webapp-install]
 
 - include: setup.yml
+  become: yes
   tags: [webapp, webapp-setup]
+
+- include: rails.yml
+  become: yes
+  become_user: "{{common.deploy_user}}"
+  tags: [webapp, webapp-rails]

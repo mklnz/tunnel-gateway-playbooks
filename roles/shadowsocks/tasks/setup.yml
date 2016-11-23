@@ -1,23 +1,10 @@
-- name: Upload config
-  template:
-    src: config.json.j2
-    dest: /etc/shadowsocks-libev/config.json
-  notify: restart shadowsocks
-
-- name: Upload init script
-  copy:
-    src: shadowsocks-libev-init
-    dest: /etc/init.d/shadowsocks-libev
+- name: Change permissons for Shadowsocks config folder
+  file:
+    path: /etc/shadowsocks-libev
+    owner: "{{common.deploy_user}}"
+    group: "{{common.deploy_user}}"
     mode: 0755
-    owner: root
-    group: root
-  notify: restart shadowsocks
+    recurse: yes
 
 - name: Enable service
-  service: name=shadowsocks-libev enabled=yes
-
-- name: Upload monit config file
-  template:
-    src: monit-shadowsocks.j2
-    dest: /etc/monit/conf.d/shadowsocks
-  notify: restart monit
+  systemd: name=shadowsocks-libev-redir@config enabled=yes daemon_reload=yes

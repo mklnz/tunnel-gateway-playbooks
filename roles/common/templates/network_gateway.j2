@@ -1,0 +1,9 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+  address {{network.address}}
+  netmask {{network.netmask}}
+  gateway {{network.gateway}}
+  dns-nameservers {{network.dns_nameservers}}

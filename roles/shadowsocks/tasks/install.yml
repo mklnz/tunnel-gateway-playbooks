@@ -2,17 +2,17 @@
   git:
     repo: https://github.com/shadowsocks/shadowsocks-libev.git
     dest: ~/shadowsocks-src/shadowsocks-libev
+  become_user: "{{common.deploy_user}}"
   register: shadowsocks_checkout
 
 - name: Compile shadowsocks
   shell: dpkg-buildpackage -b -us -uc -i
   args:
-    chdir: ~/shadowsocks-src/shadowsocks-libev
+    chdir: "/home/{{common.deploy_user}}/shadowsocks-src/shadowsocks-libev"
   when: shadowsocks_checkout.changed
 
 - name: Install shadowsocks
-  shell: "dpkg -i {{ansible_user_dir}}/shadowsocks-src/shadowsocks-libev*.deb"
+  shell: "dpkg -i shadowsocks-libev*.deb"
+  args:
+    chdir: "/home/{{common.deploy_user}}/shadowsocks-srcv"
   when: shadowsocks_checkout.changed
-  become: yes
-  notify:
-    - restart shadowsocks

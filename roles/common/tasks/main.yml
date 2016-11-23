@@ -2,6 +2,18 @@
   become: yes
   tags: [common, common-install]
 
+- include: network.yml
+  become: yes
+  tags: [common, common-network]
+
+- include: hostname.yml
+  become: yes
+  tags: [common, common-hostname]
+
+- include: users.yml
+  become: yes
+  tags: [common, common-users]
+
 - include: ruby.yml
   become: yes
   tags: [common, common-ruby]

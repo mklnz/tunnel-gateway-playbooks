@@ -1,3 +1,19 @@
+ansible_python_interpreter: /usr/bin/python3
+
+# Common
+common:
+  deploy_user: deploy
+  admin_password: # Hashed shadow forwamt
+  hostname: gateway
+  domain_suffix: example.org
+  upgrade_packages: no
+
+network:
+  address: 10.88.88.2
+  netmask: 255.255.255.0
+  gateway: 10.88.88.1
+  dns_nameservers: 10.88.88.1
+
 shadowsocks:
   server:
   server_port:
@@ -16,3 +32,6 @@ pdnsd:
   server_ip: 127.0.0.1
   server_port: 1053
   upstream_servers: 8.8.4.4, 8.8.8.8
+
+webapp:
+  secret_key_base:

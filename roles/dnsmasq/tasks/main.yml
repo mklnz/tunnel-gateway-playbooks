@@ -1,3 +1,3 @@
 - include: install.yml
   become: yes
-  tags: [dns, dns-install]
+  tags: [dnsmasq, dnsmasq-install]

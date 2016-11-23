@@ -1,0 +1,11 @@
+- name: Upload database seed
+  copy:
+    src: "{{inventory_dir}}/seeds/"
+    dest: ~/gateway-web/db/
+  register: seeds_uploaded
+
+- name: Seed database
+  shell: export $(cat .rbenv-vars | xargs) && rails db:seed
+  args:
+    chdir: ~/gateway-web
+  when: seeds_uploaded.changed

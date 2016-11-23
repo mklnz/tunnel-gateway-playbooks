@@ -5,4 +5,13 @@
     update_cache: yes
   with_items:
     - git
-    - monit
+    - ntp
+
+- name: Remove packages
+  apt:
+    name: "{{item}}"
+    state: absent
+    autoremove: yes
+    purge: yes
+  with_items:
+    - cloud-init
