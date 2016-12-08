@@ -5,6 +5,7 @@
 - include: network.yml
   become: yes
   tags: [common, common-network]
+  when: network.enabled | bool
 
 - include: hostname.yml
   become: yes

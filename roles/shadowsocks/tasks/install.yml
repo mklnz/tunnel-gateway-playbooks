@@ -2,6 +2,7 @@
   git:
     repo: https://github.com/shadowsocks/shadowsocks-libev.git
     dest: ~/shadowsocks-src/shadowsocks-libev
+    force: yes
   become_user: "{{common.deploy_user}}"
   register: shadowsocks_checkout
 
@@ -14,5 +15,5 @@
 - name: Install shadowsocks
   shell: "dpkg -i shadowsocks-libev*.deb"
   args:
-    chdir: "/home/{{common.deploy_user}}/shadowsocks-srcv"
+    chdir: "/home/{{common.deploy_user}}/shadowsocks-src"
   when: shadowsocks_checkout.changed
