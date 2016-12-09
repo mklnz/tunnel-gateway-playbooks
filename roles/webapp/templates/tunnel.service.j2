@@ -1,0 +1,15 @@
+[Unit]
+Description=Remote SSH tunnel
+
+[Service]
+Type=forking
+WorkingDirectory=/home/{{common.deploy_user}}
+ExecStart=/home/{{common.deploy_user}}/tunnel.sh
+User={{common.deploy_user}}
+Group={{common.deploy_user}}
+PIDFile=/home/{{common.deploy_user}}/tunnel.pid
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

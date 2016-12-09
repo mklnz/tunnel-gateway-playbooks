@@ -1,7 +1,7 @@
 - name: Upload dnsmasq config
   template:
-    src: gfwlist.conf.j2
-    dest: /etc/dnsmasq.d/gfwlist.conf
+    src: dnsmasq_gateway.conf.j2
+    dest: /etc/dnsmasq.d/dnsmasq_gateway.conf
   notify: restart dnsmasq
 
 - name: Update sudoers file
@@ -16,8 +16,9 @@
 
 - name: Upload env file
   template:
-    src: rbenv.j2
-    dest: "~/gateway-web/.rbenv-vars"
+    src: env.j2
+    dest: "~/gateway-web/.env"
+    force: true
   become_user: "{{common.deploy_user}}"
 
 - name: Upload gateway-web systemd unit file
@@ -28,10 +29,7 @@
     - enable webapp
     - restart webapp
 
-- name: Upload gateway-daemon systemd unit file
+- name: Upload remote tunnel systemd unit file
   template:
-    src: gateway-daemon.service.j2
-    dest: /etc/systemd/system/gateway-daemon.service
-  notify:
-    - enable daemon
-    - restart daemon
+    src: tunnel.service.j2
+    dest: /etc/systemd/system/tunnel.service

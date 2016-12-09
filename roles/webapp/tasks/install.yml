@@ -6,10 +6,12 @@
   with_items:
     - mongodb-server
     - nodejs
+    - autossh
 
 - name: Git checkout gateway-web
   git:
     repo: https://github.com/mklnz/gateway-web.git
     dest: "~/gateway-web"
+    force: yes
   become_user: "{{common.deploy_user}}"
   notify: precompile assets
