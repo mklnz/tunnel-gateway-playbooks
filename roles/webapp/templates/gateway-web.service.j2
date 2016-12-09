@@ -4,7 +4,7 @@ Description=Gateway web interface
 [Service]
 Type=forking
 WorkingDirectory=/home/{{common.deploy_user}}/gateway-web/
-EnvironmentFile=/home/{{common.deploy_user}}/gateway-web/.rbenv-vars
+EnvironmentFile=/home/{{common.deploy_user}}/gateway-web/.env
 ExecStart=/usr/local/bin/puma -p 4567 -d
 User={{common.deploy_user}}
 Group={{common.deploy_user}}
